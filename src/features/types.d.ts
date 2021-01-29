@@ -19,6 +19,11 @@ export type Description = string;
 export type DueDate = number;
 
 /**
+ * Todo Status
+ */
+export type Status = "To Do" | "Doing" | "Done";
+
+/**
  * Todo Object
  */
 export type Todo = {
@@ -26,4 +31,5 @@ export type Todo = {
   title: Title;
   description: Description;
   dueDate: DueDate;
+  status: Status;
 };

@@ -1,4 +1,8 @@
-import { Title as TodoTitle, Description as TodoDescription } from "../types";
+import {
+  Title as TodoTitle,
+  Description as TodoDescription,
+  Status as TodoStatus,
+} from "../types";
 
 /**
  * Editor Title Field
@@ -14,6 +18,11 @@ export type Description = TodoDescription;
  * Editor DueDate Field
  */
 export type DueDate = Date;
+
+/**
+ * Editor Status Field
+ */
+export type Status = TodoStatus;
 
 /**
  * Editor Form Values
