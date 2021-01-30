@@ -16,9 +16,7 @@ export type User = {
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (userId: string, thunkApi): Promise<User> => {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
+    await axios.get("https://jsonplaceholder.typicode.com/todos/1");
     return {
       id: "kjansdlijfnalkjsdnfas",
       name: "Bryan",

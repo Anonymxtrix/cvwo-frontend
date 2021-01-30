@@ -20,9 +20,9 @@ type Props = {
 const KanbanContainer: React.FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
   const todos = useSelector(todosSelector);
-
   React.useEffect(() => {
     dispatch(fetchTodos());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCardUpdate = (
