@@ -6,6 +6,9 @@ The code for the backend is [here](https://github.com/Anonymxtrix/cvwo-backend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Done By: Loh Xian Ze, Bryan
+Matriculation Number: A0217636B
+
 
 ## Available Scripts
 
