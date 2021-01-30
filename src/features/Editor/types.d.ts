@@ -2,6 +2,7 @@ import {
   Title as TodoTitle,
   Description as TodoDescription,
   Status as TodoStatus,
+  Todo,
 } from "../types";
 
 /**
@@ -31,6 +32,7 @@ export type FormValues = {
   title: Title;
   description: Description;
   dueDate: DueDate;
+  status: Status;
 };
 
 /**
@@ -40,8 +42,12 @@ export type FormErrors = {
   title: string | null;
   description: string | null;
   dueDate: string | null;
+  status: string | null;
 };
 
+/**
+ * Editor Form State
+ */
 export type FormState = {
   values: FormValues;
   errors: FormErrors;

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -16,11 +17,15 @@ type Props = {
   className?: string;
   card: Types.Card;
   cardBag: Types.CardBag;
+  onEdit: (todo: Types.Card) => void;
+  onDelete: (todo: Types.Card) => void;
 };
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {},
+    root: {
+      // width: 300,
+    },
     text: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
@@ -44,11 +49,29 @@ const KanbanCard: React.FunctionComponent<Props> = (props) => {
       </AccordionSummary>
       <AccordionDetails>
         <Typography className={classes.text}>
-          {props.card.description}
+          {props.card.description && (
+            <>
+              <i>{props.card.description}</i>
+              <br />
+              <br />
+            </>
+          )}
+          Due: {dayjs(props.card.dueDate).format("DD-MM-YYYY")}
         </Typography>
       </AccordionDetails>
       <AccordionActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="secondary"
+          onClick={() => props.onDelete(props.card)}
+        >
+          Delete
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => props.onEdit(props.card)}
+        >
           Edit
         </Button>
       </AccordionActions>

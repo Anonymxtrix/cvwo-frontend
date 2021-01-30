@@ -12,7 +12,10 @@ const store = configureStore<RootState>({
 });
 
 store.subscribe(() => {
-  localStorage.setItem(localStorageKey, JSON.stringify({}));
+  localStorage.setItem(
+    localStorageKey,
+    JSON.stringify({ auth: store.getState().auth })
+  );
 });
 
 export default store;

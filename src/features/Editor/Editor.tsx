@@ -11,31 +11,23 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 
-import EditorField from "./EditorField";
+import Input from "../common/Input";
 
 import { Title, Description, DueDate, Status } from "./types";
 
 type Props = {
   className?: string;
   open: boolean;
-  // title: Title;
-  // onChangeTitle: React.ChangeEventHandler<HTMLInputElement>;
-  // description: Description;
-  // onChangeDescription: React.ChangeEventHandler<HTMLInputElement>;
-  // dueDate: DueDate;
-  // onChangeDueDate: React.ChangeEventHandler<HTMLInputElement>;
-  // onCancel: React.MouseEventHandler<HTMLButtonElement>;
-  // onSubmit: React.MouseEventHandler<HTMLButtonElement>;
-  title?: Title;
-  onChangeTitle?: React.ChangeEventHandler<HTMLInputElement>;
-  description?: Description;
-  onChangeDescription?: React.ChangeEventHandler<HTMLInputElement>;
-  dueDate?: DueDate;
-  onChangeDueDate?: React.ChangeEventHandler<HTMLInputElement>;
-  status?: Status;
-  onChangeStatus?: React.ChangeEventHandler<HTMLInputElement>;
-  onCancel?: React.MouseEventHandler<HTMLButtonElement>;
-  onSubmit?: React.MouseEventHandler<HTMLButtonElement>;
+  title: Title;
+  onChangeTitle: React.ChangeEventHandler<HTMLInputElement>;
+  description: Description;
+  onChangeDescription: React.ChangeEventHandler<HTMLInputElement>;
+  dueDate: DueDate;
+  onChangeDueDate: React.ChangeEventHandler<HTMLInputElement>;
+  status: Status;
+  onChangeStatus: React.ChangeEventHandler<HTMLInputElement>;
+  onCancel: React.MouseEventHandler<HTMLButtonElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
 const useStyles = makeStyles((theme) =>
@@ -51,6 +43,7 @@ const useStyles = makeStyles((theme) =>
       maxHeight: "100%",
       overflowY: "auto",
       maxWidth: "100%",
+      backgroundColor: theme.palette.background.default,
     },
     content: {
       display: "flex",
@@ -68,36 +61,39 @@ const Editor: React.FunctionComponent<Props> = (props) => {
 
   return (
     <Modal open={props.open}>
-      <form>
+      <form onSubmit={props.onSubmit}>
         <Card className={clsx(classes.root, props.className)}>
           <CardHeader title="Edit" titleTypographyProps={{ variant: "h6" }} />
           <Divider />
           <CardContent className={classes.content}>
-            <EditorField
-              variant="outlined"
+            <Input
               label="Title"
+              name="title"
               value={props.title || ""}
               onChange={props.onChangeTitle}
             />
-            <EditorField
-              variant="outlined"
+            <Input
               label="Description"
+              name="description"
               multiline
               rows={4}
               value={props.description || ""}
               onChange={props.onChangeDescription}
             />
-            <EditorField
+            <Input
               type="date"
-              variant="outlined"
               label="Due Date"
-              value={props.dueDate || dayjs().format("YYYY-MM-DD")}
+              name="dueDate"
+              value={
+                dayjs(props.dueDate).format("YYYY-MM-DD") ||
+                dayjs().format("YYYY-MM-DD")
+              }
               onChange={props.onChangeDueDate}
             />
-            <EditorField
+            <Input
               select
-              variant="outlined"
               label="Status"
+              name="status"
               value={props.status || todoStatuses[0]}
               onChange={props.onChangeStatus}
             >
@@ -106,7 +102,7 @@ const Editor: React.FunctionComponent<Props> = (props) => {
                   {status}
                 </MenuItem>
               ))}
-            </EditorField>
+            </Input>
           </CardContent>
           <Divider />
           <CardActions className={classes.actions}>
