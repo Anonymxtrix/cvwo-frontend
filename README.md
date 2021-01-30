@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Project Details
+
+View the live demo [here](https://hopeful-shaw-98ce18.netlify.app/)
+
+The code for the backend is [here](https://github.com/Anonymxtrix/cvwo-backend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
